@@ -23,31 +23,10 @@ class Login extends Component {
 
   handleValidation() {
     let errors = "";
-    // let isValid = true;
-
-    //Email
+    
     if (!this.state.email || !this.state.password) {
-      // isValid = false;
       errors = "Enter valid information";
     }
-
-    // if (typeof fields["email"] !== "undefined") {
-    //   let lastAtPos = fields["email"].lastIndexOf('@');
-    //   let lastDotPos = fields["email"].lastIndexOf('.');
-
-    //   if (!(lastAtPos < lastDotPos && lastAtPos > 0 && fields["email"].indexOf('@@') == -1 && lastDotPos > 2 && (fields["email"].length - lastDotPos) > 2)) {
-    //     isValid = false;
-    //     errors["email"] = "Email is not valid";
-    //   }
-    // }
-
-
-    // if (typeof fields["password"] !== "undefined") {
-    //   if (!fields["password"].match(/^[a-zA-Z]+$/)) {
-    //     isValid = false;
-    //     errors["password"] = "Only letters";
-    //   }
-    // }
 
     this.setState({ errors: errors, show: true });
   }
@@ -72,7 +51,7 @@ class Login extends Component {
             </div>
 
             <div className="card mb-3 mx-width mx-auto">
-              {/* <div className="card-header bg-transparent">Header</div> */}
+              
               <div className="card-body">
                 <h5>Log in</h5>
                 <form onSubmit={this.contactSubmit.bind(this)}>
@@ -99,7 +78,7 @@ class Login extends Component {
                   </div>
                 </form>
               </div>
-              {/* <div className="card-footer bg-transparent">Footer</div> */}
+              
             </div>
 
             <div className="col-md-12">
@@ -122,7 +101,6 @@ class Login extends Component {
           </div>
 
           <div className="col-md-12">
-            <h6>Services</h6>
             <Services />
           </div>
 

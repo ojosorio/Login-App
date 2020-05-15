@@ -59,8 +59,18 @@ h1, h2, h3, h4, h5, h6 {
     border-color: $greenColor;
 }
 
+.button--gray {
+    color: #fff;
+    background-color: $grayColor;
+    border-color: $grayColor;
+}
+
 .button--md {
     padding: 0.375rem 2.75rem;
+}
+
+.button--lg {
+    padding: 0.375rem 5rem;
 }
 
 .msg {

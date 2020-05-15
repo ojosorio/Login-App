@@ -7,8 +7,19 @@ class Services extends Component {
         this.state = {
             error: null,
             isLoaded: false,
-            items: []
+            items: "",
+            name: "https://swapi.dev/api/people/"
         };
+
+        this.callsv = this.callsv.bind(this);
+        this.clear = this.clear.bind(this);
+    }
+
+    clear() {
+        this.setState({
+            isLoaded: true,
+            items: ""
+        });
     }
 
     callsv() {
@@ -16,17 +27,38 @@ class Services extends Component {
             .then(res => res.json())
             .then(
                 (result) => {
-                    console.log(result);
                     let apiResult = result['results'];
-                    console.log(apiResult);
-                    this.setState({
-                        isLoaded: true,
-                        items: apiResult
-                    });
+                    let arrResult = [];
 
+                    for (let i = 0; i < apiResult.length; i++) {
+                        let hm = this.getHomeworld(apiResult[i]['homeworld']);
+                        let flm = this.getFilm(apiResult[i]['films']);
+                        hm.then((result) => {
+                            let totalresult = {
+                                name: apiResult[i]['name'],
+                                hair_color: apiResult[i]['hair_color'],
+                                skin_color: apiResult[i]['skin_color'],
+                                gender: apiResult[i]['gender'],
+                                homeworld: result,
+                                films: flm
+                            };
+                            arrResult.push(totalresult);
+                        });
+                    }
+
+                    setTimeout(() => {
+                        this.setState({
+                            isLoaded: true,
+                            items: JSON.stringify(arrResult)
+                        });
+                    }, 1000);
+                    console.log(arrResult);
                 },
                 (error) => {
-
+                    this.setState({
+                        isLoaded: true,
+                        items: error
+                    });
                 }
             )
     }
@@ -74,7 +106,17 @@ class Services extends Component {
 
         return (
             <div>
-                <button type="submit" className="button button--yellow button--md mb-3" onClick={this.callsv}>Submit</button>
+                <h2>Services</h2>
+                <div className="row">
+                    <div className="col-md-6">
+                        <button type="submit" className="button button--green button--lg mb-3" onClick={this.callsv}>Get Data</button>
+                    </div>
+                    <div className="col-md-6">
+                        <button type="submit" className="button button--gray button--lg mb-3" onClick={this.clear}>Clear</button>
+                    </div>
+                </div>
+
+                <h4>Service Name: {this.state.name}</h4>
                 <div>
                     {this.state.items}
                 </div>
