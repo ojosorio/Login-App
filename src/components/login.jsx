@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import Services from "./services";
-import { NavLink, Switch, Redirect, Link, Route, BrowserRouter } from 'react-router-dom';
+import { Link, Switch, Route } from 'react-router-dom';
 
 class Login extends Component {
   constructor(props) {
@@ -23,7 +22,7 @@ class Login extends Component {
 
   handleValidation() {
     let errors = "";
-    
+
     if (!this.state.email || !this.state.password) {
       errors = "Enter valid information";
     }
@@ -38,6 +37,7 @@ class Login extends Component {
     this.setState({ [name]: value });
   }
 
+
   render() {
     return (
       <div className="row align-items-center h-100">
@@ -51,7 +51,7 @@ class Login extends Component {
             </div>
 
             <div className="card mb-3 mx-width mx-auto">
-              
+
               <div className="card-body">
                 <h5>Log in</h5>
                 <form onSubmit={this.contactSubmit.bind(this)}>
@@ -71,14 +71,14 @@ class Login extends Component {
                       </span>
                     </div>
                   </div>
-                  <button type="submit" className="button button--blue button--md mb-3">Submit</button>
+                  <button type="submit" className="button button--blue button--pmd mb-3">Submit</button>
                   <div className="form-check">
                     <input type="checkbox" className="form-check-input" id="check"></input>
                     <label className="form-check-label">Remember</label>
                   </div>
                 </form>
               </div>
-              
+
             </div>
 
             <div className="col-md-12">
@@ -96,12 +96,14 @@ class Login extends Component {
                 </a>
               </h6>
             </div>
-
-
           </div>
 
           <div className="col-md-12">
-            <Services />
+            <Link to="/services">
+              <button type="button" className="button button--green button--plg px-3">
+                <i className="fa fa-arrow-right" aria-hidden="true"> Go Services</i>
+              </button>
+            </Link>
           </div>
 
         </div>

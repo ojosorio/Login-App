@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-
+import NavBar from "./navbar";
+import { Link } from 'react-router-dom';
 
 class Services extends Component {
     constructor(props) {
@@ -105,21 +106,30 @@ class Services extends Component {
     render() {
 
         return (
-            <div>
-                <h2>Services</h2>
-                <div className="row">
-                    <div className="col-md-6">
-                        <button type="submit" className="button button--green button--lg mb-3" onClick={this.callsv}>Get Data</button>
-                    </div>
-                    <div className="col-md-6">
-                        <button type="submit" className="button button--gray button--lg mb-3" onClick={this.clear}>Clear</button>
-                    </div>
-                </div>
+            <div className="App">
+                <NavBar />
+                <Link to="/">
+                    <button type="button" className="button button--gray px-3">
+                        <i className="fa fa-undo" aria-hidden="true"> Back</i>
+                    </button>
+                </Link>
 
-                <h4>Service Name: {this.state.name}</h4>
-                <div>
-                    {this.state.items}
-                </div>
+                <main className="container h-100">
+                    <h2>Services</h2>
+                    <div className="row">
+                        <div className="col-md-6">
+                            <button type="submit" className="button button--green button--plg button--min-wd-xxs mb-3" onClick={this.callsv}>Get Data</button>
+                        </div>
+                        <div className="col-md-6">
+                            <button type="submit" className="button button--yellow button--plg button--min-wd-xxs mb-3" onClick={this.clear}>Clear</button>
+                        </div>
+                    </div>
+
+                    <h4>Service Name: {this.state.name}</h4>
+                    <div>
+                        {this.state.items}
+                    </div>
+                </main>
             </div>
         );
     }
